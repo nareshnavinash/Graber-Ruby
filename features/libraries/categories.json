@@ -1,0 +1,30 @@
+[
+  {
+    "name": "IGNORE_{HTTP Connection Issues}",
+    "messageRegex": ".*Http client is not created!.*",
+    "matchedStatuses": [
+      "failed"
+    ]
+  },
+  {
+    "name": "IGNORE_{Query need to restructured}",
+    "messageRegex": ".*Error occurred while parse the query.*",
+    "matchedStatuses": [
+      "failed"
+    ]
+  },
+  {
+    "name": "IGNORE_{issue on Stored JSON}",
+    "messageRegex": ".*Unable to read the standard json from file system.*",
+    "matchedStatuses": [
+      "failed"
+    ]
+  },
+  {
+    "name": "IGNORE_{Issue on reading conf file name}",
+    "messageRegex": ".*Unable to resolve conf file name.*",
+    "matchedStatuses": [
+      "failed"
+    ]
+  }
+]
