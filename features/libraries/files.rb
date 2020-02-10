@@ -6,16 +6,11 @@ module Graber
     @@gql_filepath = ""
     @@graphql_query = ""
     @@query_variable_filepath = ""
-    @@response_json_filepath = ""
+    @@expected_json_filepath = ""
+    @@expected_json = ""
+    @@exclude_keys = []
 
     class File
-
-        def self.read_conf_files
-            Dir["#{@@support_file_path}/**/*.conf"].each do |file|
-                @@conf_values.merge!(ParseConfig.new(file).params.to_h)
-            end
-            return @@conf_values
-        end
 
         def self.read_graphql_file(graphql_file_name)
             begin
@@ -57,19 +52,17 @@ module Graber
                         conf_values_length = @@conf_values[child].split(",").length
                         if child.include? ("_int")
                             if conf_values_length == 1
-                                result = result.gsub(child, @@conf_values[child].chomp('"').delete_prefix('"'))
+                                result = result.gsub("$"+child, @@conf_values[child].chomp('"').delete_prefix('"'))
                             else
-                                result = result.gsub(child, @@conf_values[child].split(",").map { |i|  i.to_s  }.join(",").chomp('"').delete_prefix('"'))
+                                result = result.gsub("$"+child, @@conf_values[child].split(",").map { |i|  i.to_s  }.join(",").chomp('"').delete_prefix('"'))
                             end
                         elsif child.include? ("empty_array")
-                            result = result.gsub(child, "".chomp('"').delete_prefix('"'))
-                        elsif child.include? ("_timestamp")
-                            result = result.gsub(child, "#{@@conf_values[child].delete_suffix!('_timestamp')}"+"#{Time.now.utc.to_s.gsub(' ','').gsub(':','').gsub('-','')}")
+                            result = result.gsub("$"+child, "".chomp('"').delete_prefix('"'))
                         else
                             if conf_values_length == 1
-                                result = result.gsub(child, @@conf_values[child])
+                                result = result.gsub("$"+child, @@conf_values[child])
                             else
-                                result = result.gsub(child, @@conf_values[child].split(",").map { |i|  i.to_s  }.join(","))
+                                result = result.gsub("$"+child, @@conf_values[child].split(",").map { |i|  i.to_s  }.join(","))
                             end
                         end
                     end
@@ -84,12 +77,12 @@ module Graber
             begin
                 Dir["#{@@support_file_path}/expected_jsons/**/*.json"].each do |file|
                     if file.split('/').last == json_file_name
-                        @@response_json_filepath = file
+                        @@expected_json_filepath = file
                         break
                     end
                 end
-                result = File.read(@@response_json_filepath)
-                return result.to_h
+                @@expected_json = File.read(@@expected_json_filepath)
+                return @@expected_json.to_h
             rescue Exception => e
                 puts "Json file read is failed \n filename: #{json_file_name} \n #{e.message}"
             end

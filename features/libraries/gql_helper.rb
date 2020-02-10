@@ -5,8 +5,9 @@ require 'rest-client'
 module Graber
     @@http_client = nil
     @@query = {}
-    @@response = {}
+    @@response_json = {}
     @@variables = {}
+    @@response_errors = []
 
     class GqlHelper
 
@@ -67,11 +68,12 @@ module Graber
             begin
                 @@variables = variables
                 if variable == nil
-                    @@response = @@http_client.query(query)
+                    @@response_json = @@http_client.query(query)
                 else
-                    @@response = @@http_client.query(query, variables: variables)
+                    @@response_json = @@http_client.query(query, variables: variables)
                 end
-                return @@response
+                @@response_errors = @@response_json.to_h["errors"]
+                return @@response_json
             rescue Exception => e
                 puts "Query cannot be parsed \n #{e.message}"
                 return nil
