@@ -1,12 +1,12 @@
 require 'parseconfig'
 
-module Grabber
+module Graber
     @@conf_values = {}
-    @@support_file_path = File.join("#{Pathname.pwd}","Graphql")
+    @@support_file_path = File.join("#{Pathname.pwd}","graphql")
     @@gql_filepath = ""
     @@graphql_query = ""
-    @@json_filepath = ""
-    @@stored_filepath = ""
+    @@query_variable_filepath = ""
+    @@response_json_filepath = ""
 
     class File
 
@@ -19,7 +19,7 @@ module Grabber
 
         def self.read_graphql_file(graphql_file_name)
             begin
-                Dir["#{@@support_file_path}/**/*.graphql"].each do |file|
+                Dir["#{@@support_file_path}/query/**/*.graphql"].each do |file|
                     if file.split('/').last == graphql_file_name
                         @@gql_filepath = file
                         break
@@ -32,29 +32,23 @@ module Grabber
             end
         end
         
-        def self.read_json_file(json_file_name, response=nil)
-            file_path = ""
+        def self.read_query_variable_json_file(json_file_name)
             begin
-                Dir["#{@@support_file_path}/**/*.json"].each do |file|
+                Dir["#{@@support_file_path}/variable/**/*.json"].each do |file|
                     if file.split('/').last == json_file_name
-                        file_path = file
+                        @@query_variable_filepath = file
                         break
                     end
                 end
-                if response == "stored"
-                    @@stored_filepath = file_path
-                else
-                    @@json_filepath = file_path
-                end
-                json_content = File.read(file_path)
-                result = update_json_values(json_content)
+                json_content = File.read(@@query_variable_filepath)
+                result = update_json_values_from_config(json_content)
                 return result.to_h
             rescue Exception => e
                 puts "Json file read is failed \n filename: #{json_file_name} \n #{e.message}"
             end
         end
 
-        def self.update_json_values(json_content)
+        def self.update_json_values_from_config(json_content)
             begin
                 result = json_content
                 value_as_array =  json_content.scan(/_\$(\w+)\$_/)
@@ -83,6 +77,21 @@ module Grabber
                 return result.gsub("nil","null")
             rescue Exception => e
                 puts "Exception occured while saving user input values to the json \n #{e.message}"
+            end
+        end
+
+        def self.read_expected_json_file(json_file_name)
+            begin
+                Dir["#{@@support_file_path}/expected_jsons/**/*.json"].each do |file|
+                    if file.split('/').last == json_file_name
+                        @@response_json_filepath = file
+                        break
+                    end
+                end
+                result = File.read(@@response_json_filepath)
+                return result.to_h
+            rescue Exception => e
+                puts "Json file read is failed \n filename: #{json_file_name} \n #{e.message}"
             end
         end
 

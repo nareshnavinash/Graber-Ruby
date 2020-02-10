@@ -1,4 +1,4 @@
-module Grabber
+module Graber
     class JsonHelper
         
     end
