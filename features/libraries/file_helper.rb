@@ -1,4 +1,5 @@
 require 'parseconfig'
+require 'pathname'
 
 module Graber
     @@conf_values = {}
@@ -10,7 +11,7 @@ module Graber
     @@expected_json = ""
     @@exclude_keys = []
 
-    class File
+    class FileHelper
 
         def self.read_graphql_file(graphql_file_name)
             begin
@@ -56,7 +57,7 @@ module Graber
                             else
                                 result = result.gsub("$"+child, @@conf_values[child].split(",").map { |i|  i.to_s  }.join(",").chomp('"').delete_prefix('"'))
                             end
-                        elsif child.include? ("empty_array")
+                        elsif child.include? ("empty")
                             result = result.gsub("$"+child, "".chomp('"').delete_prefix('"'))
                         else
                             if conf_values_length == 1

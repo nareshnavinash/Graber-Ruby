@@ -1,0 +1,9 @@
+{
+    "first": 10,
+    "after": "",
+    "geographies": ["$fundsGeographies"],
+    "currencies": ["$fundsCurrencies"],
+    "assetclasses": ["$fundsAssetClasses"],
+    "investmentBudget": ["$fundsInvestmentBudget"],
+    "annualizedReturns": ["$fundsAnnualizedReturns"]
+}

@@ -1,0 +1,38 @@
+query ($useridentity: UserIdentity!, $identifier: UserIdentifier!, $tweetId: String!, $searchq: String!, $searchcount: Int, $searchresulttype: SearchReponse){
+  graphQLHub
+  twitter {
+    user (identifier: $identifier, identity: $useridentity) {
+      created_at
+      description
+      id
+      screen_name
+      name
+      profile_image_url
+      url
+      tweets_count
+      followers_count
+      tweets(limit: 1) {
+        text
+      }
+    }
+    tweet(id: $tweetId) {
+      text,
+      retweets(limit: 2) {
+        id,
+        retweeted_status {
+          id
+        }
+        user {
+          screen_name
+        }
+      }
+    }
+    search(q: $searchq, count: $searchcount, result_type: $searchresulttype) {
+      user {
+        screen_name
+      }
+      id
+      text
+    }
+  }
+}

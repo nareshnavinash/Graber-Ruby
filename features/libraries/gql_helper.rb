@@ -8,17 +8,20 @@ module Graber
     @@response_json = {}
     @@variables = {}
     @@response_errors = []
+    @@access_token = nil
+    @@client = nil
+    @@uid = nil
 
     class GqlHelper
 
-        def initialize(Graphql_endpoint, username = nil, password = nil)
-            login_using_username_password(Graphql_endpoint, username, password)
-            create_gql_client(Graphql_endpoint)
+        def initialize(graphql_endpoint, username = nil, password = nil)
+            login_using_username_password(graphql_endpoint, username, password) if username != nil
+            create_gql_client(graphql_endpoint)
         end
 
-        def login_using_username_password(Graphql_endpoint, username, password)
+        def login_using_username_password(graphql_endpoint, username, password)
             begin
-                http_auth_response = RestClient.post "#{url_for_rest_client}/relationship_manager_users/sign_in", {email: "#{userName}", password: "#{passKey}"}
+                http_auth_response = RestClient.post "#{graphql_endpoint}/login", {email: "#{userName}", password: "#{passKey}"}
                 if http_auth_response.code != 200
                     puts "Authentication failed \n #{http_auth_response}"
                     return false
@@ -33,16 +36,30 @@ module Graber
             end
         end
 
-        def create_gql_client(Graphql_endpoint)
+        def create_gql_client(graphql_endpoint)
             begin
-                @http_adaptor = GraphQL::Client::HTTP.new(Graphql_endpoint) do
-                    def headers(context)
-                        {"Content-Type": "application/json",
-                        "Accept": "application/json",
-                        "access-token": @@access_token,
-                        "client": @@client,
-                        "uid": @@uid
-                        }
+                @http_adaptor = GraphQL::Client::HTTP.new("#{graphql_endpoint}") do
+                    if @@access_token == nil
+                        def headers(context)
+                            {"Content-Type": "application/json",
+                            "Accept": "*/*",
+                            "Cache-Control": "no-cache",
+                            "Host": "www.graphqlhub.com",
+                            "Accept-Encoding": "gzip, deflate",
+                            "Connection": "keep-alive",
+                            "User-Agent": "PostmanRuntime/7.21.0",
+                            "Postman-Token": "546e02e7-c331-4cd7-be93-04c9c9060d83"
+                            }
+                        end
+                    else
+                        def headers(context)
+                            {"Content-Type": "application/json",
+                            "Accept": "*/*",
+                            "access-token": @@access_token,
+                            "client": @@client,
+                            "uid": @@uid
+                            }
+                        end
                     end
                 end
                 @http_schema = GraphQL::Client.load_schema(@http_adaptor)
