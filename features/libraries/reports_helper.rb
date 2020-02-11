@@ -36,7 +36,7 @@ module Graber
                 new_json_file_path = File.join(File.join("#{Pathname.pwd}","reports","runtime_files"),"#{scenario_object.feature.name.gsub(" ","_").gsub(",","_").gsub('"','')}_#{scenario_object.name.gsub(" ","_").gsub(",","_").gsub('"','')}_response.json")
             end
             file = File.open(new_json_file_path, "w")
-            file.puts JSON.pretty_generate(@@response_json.original_hash)
+            file.puts JSON.pretty_generate(@@response_json['data'])
             file.close
             # puts  "file attached with the test case--->"+"#{new_json_file_path}"
             return File.open(new_json_file_path)

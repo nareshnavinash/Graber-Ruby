@@ -7,17 +7,11 @@
         },
         {
           "cursor": "MTA"
-        },
-        {
-          "cursor": "MjA"
-        },
-        {
-          "cursor": "MzA"
         }
       ]
     },
-    "totalPages": 4,
-    "totalCount": 33,
+    "totalPages": 2,
+    "totalCount": 16,
     "pageInfo": {
       "hasNextPage": true
     },
@@ -32,7 +26,39 @@
           "topSellingPercentile": null,
           "topAumPercentile": null
         },
-        "wiCode": "Naresh",
+        "wiCode": "WI-CORE-22143",
+        "instrumentName": "JPMorgan US Government MMkt Investor",
+        "standardDeviation": {
+          "threeYear": 0.204
+        },
+        "returns": {
+          "threeYear": 0.069
+        },
+        "strategicAssetAllocation": {
+          "cash": "66.39644",
+          "bond": "33.52149",
+          "stock": "0.08207",
+          "alternatives": "0.0"
+        },
+        "expenseRatio": 0.51,
+        "sharpeRatio": {
+          "threeYear": -13.84
+        },
+        "incomeGrowthFocus": "Money Mkt - Government",
+        "minimumInitialInvestment": 1000000,
+        "previousClosePrice": null
+      },
+      {
+        "__typename": "Fund",
+        "currency": {
+          "id": null,
+          "isoCode": "USD"
+        },
+        "instrumentLabel": {
+          "topSellingPercentile": null,
+          "topAumPercentile": null
+        },
+        "wiCode": "WI-CORE-22144",
         "instrumentName": "American Funds Growth Fund of Amer A",
         "standardDeviation": {
           "threeYear": 11.842
@@ -41,7 +67,7 @@
           "threeYear": 1.344
         },
         "strategicAssetAllocation": {
-          "cash": "50.92412",
+          "cash": "5.92412",
           "bond": "0.0",
           "stock": "94.01503",
           "alternatives": "0.06084"
@@ -84,38 +110,6 @@
         },
         "incomeGrowthFocus": "Money Mkt - Government",
         "minimumInitialInvestment": 1000,
-        "previousClosePrice": null
-      },
-      {
-        "__typename": "Fund",
-        "currency": {
-          "id": null,
-          "isoCode": "USD"
-        },
-        "instrumentLabel": {
-          "topSellingPercentile": null,
-          "topAumPercentile": null
-        },
-        "wiCode": "WI-CORE-22147",
-        "instrumentName": "Fidelity® 500 Index",
-        "standardDeviation": {
-          "threeYear": 10.856
-        },
-        "returns": {
-          "threeYear": 1.21
-        },
-        "strategicAssetAllocation": {
-          "cash": "0.38731",
-          "bond": "0.02123",
-          "stock": "99.59146",
-          "alternatives": "0.0"
-        },
-        "expenseRatio": 0.02,
-        "sharpeRatio": {
-          "threeYear": 1.211
-        },
-        "incomeGrowthFocus": "Growth and Income",
-        "minimumInitialInvestment": 0,
         "previousClosePrice": null
       },
       {
@@ -320,26 +314,26 @@
           "topSellingPercentile": null,
           "topAumPercentile": null
         },
-        "wiCode": "WI-CORE-22143",
-        "instrumentName": "JPMorgan US Government MMkt Investor",
+        "wiCode": "WI-CORE-22154",
+        "instrumentName": "Federated Government Obligs Capital",
         "standardDeviation": {
-          "threeYear": 0.204
+          "threeYear": 0.209
         },
         "returns": {
-          "threeYear": 0.069
+          "threeYear": 0.084
         },
         "strategicAssetAllocation": {
-          "cash": "66.39644",
-          "bond": "33.52149",
-          "stock": "0.08207",
+          "cash": "69.2948",
+          "bond": "30.7052",
+          "stock": "0.0",
           "alternatives": "0.0"
         },
-        "expenseRatio": 0.51,
+        "expenseRatio": 0.43,
         "sharpeRatio": {
-          "threeYear": -13.84
+          "threeYear": -10.638
         },
         "incomeGrowthFocus": "Money Mkt - Government",
-        "minimumInitialInvestment": 1000000,
+        "minimumInitialInvestment": 500000,
         "previousClosePrice": null
       }
     ]

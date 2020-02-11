@@ -13,47 +13,33 @@
         },
         {
           "cursor": "MzA"
+        },
+        {
+          "cursor": "NDA"
+        },
+        {
+          "cursor": "NTA"
+        },
+        {
+          "cursor": "NjA"
+        },
+        {
+          "cursor": "NzA"
+        },
+        {
+          "cursor": "ODA"
+        },
+        {
+          "cursor": "OTA"
         }
       ]
     },
-    "totalPages": 4,
-    "totalCount": 33,
+    "totalPages": 10,
+    "totalCount": 97,
     "pageInfo": {
       "hasNextPage": true
     },
     "nodes": [
-      {
-        "__typename": "Fund",
-        "currency": {
-          "id": null,
-          "isoCode": "USD"
-        },
-        "instrumentLabel": {
-          "topSellingPercentile": null,
-          "topAumPercentile": null
-        },
-        "wiCode": "Naresh",
-        "instrumentName": "American Funds Growth Fund of Amer A",
-        "standardDeviation": {
-          "threeYear": 11.842
-        },
-        "returns": {
-          "threeYear": 1.344
-        },
-        "strategicAssetAllocation": {
-          "cash": "50.92412",
-          "bond": "0.0",
-          "stock": "94.01503",
-          "alternatives": "0.06084"
-        },
-        "expenseRatio": 0.62,
-        "sharpeRatio": {
-          "threeYear": 1.246
-        },
-        "incomeGrowthFocus": "Growth",
-        "minimumInitialInvestment": 250,
-        "previousClosePrice": null
-      },
       {
         "__typename": "Fund",
         "currency": {
@@ -117,6 +103,38 @@
         "incomeGrowthFocus": "Growth and Income",
         "minimumInitialInvestment": 0,
         "previousClosePrice": null
+      },
+      {
+        "__typename": "Fund",
+        "currency": {
+          "id": null,
+          "isoCode": "THB"
+        },
+        "instrumentLabel": {
+          "topSellingPercentile": null,
+          "topAumPercentile": null
+        },
+        "wiCode": "WI-CORESIT-22453",
+        "instrumentName": "K Oil Fund",
+        "standardDeviation": {
+          "threeYear": null
+        },
+        "returns": {
+          "threeYear": null
+        },
+        "strategicAssetAllocation": {
+          "cash": "0.0",
+          "bond": "0.0",
+          "stock": "0.0",
+          "alternatives": "0.0"
+        },
+        "expenseRatio": null,
+        "sharpeRatio": {
+          "threeYear": null
+        },
+        "incomeGrowthFocus": null,
+        "minimumInitialInvestment": 100,
+        "previousClosePrice": 3.8665
       },
       {
         "__typename": "Fund",
@@ -224,58 +242,26 @@
           "topSellingPercentile": null,
           "topAumPercentile": null
         },
-        "wiCode": "WI-CORE-22151",
-        "instrumentName": "Fidelity® Inv MM Fds Government III",
+        "wiCode": "WI-CORE-22155",
+        "instrumentName": "BlackRock Liquidity FedFund Select",
         "standardDeviation": {
-          "threeYear": 0.21
+          "threeYear": 0.16
         },
         "returns": {
-          "threeYear": 0.073
+          "threeYear": 0.041
         },
         "strategicAssetAllocation": {
-          "cash": "43.22597",
-          "bond": "58.46254",
-          "stock": "0.0",
-          "alternatives": "-1.68852"
-        },
-        "expenseRatio": 0.46,
-        "sharpeRatio": {
-          "threeYear": -13.926
-        },
-        "incomeGrowthFocus": "Money Mkt - Government",
-        "minimumInitialInvestment": 1000000,
-        "previousClosePrice": null
-      },
-      {
-        "__typename": "Fund",
-        "currency": {
-          "id": null,
-          "isoCode": "USD"
-        },
-        "instrumentLabel": {
-          "topSellingPercentile": null,
-          "topAumPercentile": null
-        },
-        "wiCode": "WI-CORE-22152",
-        "instrumentName": "Goldman Sachs FS Government Instl",
-        "standardDeviation": {
-          "threeYear": 0.21
-        },
-        "returns": {
-          "threeYear": 0.096
-        },
-        "strategicAssetAllocation": {
-          "cash": "64.88081",
-          "bond": "35.11919",
+          "cash": "65.42325",
+          "bond": "34.57675",
           "stock": "0.0",
           "alternatives": "0.0"
         },
-        "expenseRatio": 0.19,
+        "expenseRatio": 1.04,
         "sharpeRatio": {
-          "threeYear": -5.714
+          "threeYear": -8.829
         },
         "incomeGrowthFocus": "Money Mkt - Government",
-        "minimumInitialInvestment": 10000000,
+        "minimumInitialInvestment": 0,
         "previousClosePrice": null
       },
       {
@@ -288,26 +274,26 @@
           "topSellingPercentile": null,
           "topAumPercentile": null
         },
-        "wiCode": "WI-CORE-22153",
-        "instrumentName": "JPMorgan US Government MMkt Instl",
+        "wiCode": "WI-CORE-22157",
+        "instrumentName": "Fidelity® Contrafund®",
         "standardDeviation": {
-          "threeYear": 0.206
+          "threeYear": 12.846
         },
         "returns": {
-          "threeYear": 0.093
+          "threeYear": 1.431
         },
         "strategicAssetAllocation": {
-          "cash": "66.39644",
-          "bond": "33.52149",
-          "stock": "0.08207",
-          "alternatives": "0.0"
+          "cash": "2.37198",
+          "bond": "0.0",
+          "stock": "97.42996000000001",
+          "alternatives": "0.19806"
         },
-        "expenseRatio": 0.26,
+        "expenseRatio": 0.82,
         "sharpeRatio": {
-          "threeYear": -6.425
+          "threeYear": 1.23
         },
-        "incomeGrowthFocus": "Money Mkt - Government",
-        "minimumInitialInvestment": 10000000,
+        "incomeGrowthFocus": "Growth",
+        "minimumInitialInvestment": 0,
         "previousClosePrice": null
       },
       {
@@ -320,26 +306,58 @@
           "topSellingPercentile": null,
           "topAumPercentile": null
         },
-        "wiCode": "WI-CORE-22143",
-        "instrumentName": "JPMorgan US Government MMkt Investor",
+        "wiCode": "WI-CORE-22158",
+        "instrumentName": "American Funds Fundamental Invs A",
         "standardDeviation": {
-          "threeYear": 0.204
+          "threeYear": 10.098
         },
         "returns": {
-          "threeYear": 0.069
+          "threeYear": 1.128
         },
         "strategicAssetAllocation": {
-          "cash": "66.39644",
-          "bond": "33.52149",
-          "stock": "0.08207",
+          "cash": "5.71759",
+          "bond": "0.0",
+          "stock": "94.28241",
           "alternatives": "0.0"
         },
-        "expenseRatio": 0.51,
+        "expenseRatio": 0.59,
         "sharpeRatio": {
-          "threeYear": -13.84
+          "threeYear": 1.204
         },
-        "incomeGrowthFocus": "Money Mkt - Government",
-        "minimumInitialInvestment": 1000000,
+        "incomeGrowthFocus": "Growth and Income",
+        "minimumInitialInvestment": 250,
+        "previousClosePrice": null
+      },
+      {
+        "__typename": "Fund",
+        "currency": {
+          "id": null,
+          "isoCode": "USD"
+        },
+        "instrumentLabel": {
+          "topSellingPercentile": null,
+          "topAumPercentile": null
+        },
+        "wiCode": "WI-CORE-22144",
+        "instrumentName": "American Funds Growth Fund of Amer A",
+        "standardDeviation": {
+          "threeYear": 11.842
+        },
+        "returns": {
+          "threeYear": 1.344
+        },
+        "strategicAssetAllocation": {
+          "cash": "5.92412",
+          "bond": "0.0",
+          "stock": "94.01503",
+          "alternatives": "0.06084"
+        },
+        "expenseRatio": 0.62,
+        "sharpeRatio": {
+          "threeYear": 1.246
+        },
+        "incomeGrowthFocus": "Growth",
+        "minimumInitialInvestment": 250,
         "previousClosePrice": null
       }
     ]

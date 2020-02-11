@@ -79,9 +79,9 @@ module Graber
             begin
                 @@variables = variables
                 if variables == nil
-                    @@response_json = @@http_client.query(query)
+                    @@response_json = @@http_client.query(query).original_hash
                 else
-                    @@response_json = @@http_client.query(query, variables: @@variables)
+                    @@response_json = @@http_client.query(query, variables: @@variables).original_hash
                 end
                 @@response_errors = @@response_json.to_h["errors"]
                 return @@response_json

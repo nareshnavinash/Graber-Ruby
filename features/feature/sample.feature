@@ -24,20 +24,18 @@ Feature: Sample graphql query with variables example
             | wiCode                   |
             | strategicAssetAllocation |
         Then I validated the response as against stored validated JSON data
-            | ExpectedJson |
-            | <expected_json>     |
+            | ExpectedJson      |
+            | <expected_json>   |
 
     Examples:
         | geographies             | currencies  | assetclasses        | investmentBudget                 | annualizedReturns                | expected_json  |
         | US                      | empty       | empty               | empty                            | empty                            | sample         |
-        # | US,ASIA_EX_JAPAN,GLOBAL | empty       | empty               | empty                            | empty                            | $FundListMoreGeographyResponse$             |
-        # | empty                   | USD         | empty               | empty                            | empty                            | $FundListOneCurrencyResponse$               |
-        # | empty                   | USD,SGD,MYR | empty               | empty                            | empty                            | $FundListMoreCurrencyResponse$              |
-        # | empty                   | empty       | empty               | less_than_5K                     | empty                            | $FundListOneInvestmentBudgetResponse$       |
-        # | empty                   | empty       | empty               | less_than_5K,between_5K_and_100K | empty                            | $FundListMoreInvestmentBudgetResponse$      |
-        # | empty                   | empty       | FIXED_INCOME        | empty                            | empty                            | $FundListOneAssetClassResponse$             |
-        # | empty                   | empty       | FIXED_INCOME,EQUITY | empty                            | empty                            | $FundListMoreAssetClassResponse$            |
-        # | empty                   | empty       | empty               | empty                            | between_5_and_1                  | $FundListOneAnnualizedReturnsResponse$      |
-        # | empty                   | empty       | empty               | empty                            | between_1_and_5,between_5_and_10 | $FundListMoreAnnualizedReturnsResponse$     |
-        # | US                      | USD         | FIXED_INCOME        | less_than_5K                     | between_5_and_1                  | $FundListOneInEachCategoryResponse$         |
-        # | US,ASIA_EX_JAPAN,GLOBAL | USD,SGD,MYR | FIXED_INCOME,EQUITY | less_than_5K,between_5K_and_100K | between_1_and_5,between_5_and_10 | $FundListMoreThanOneInEachCategoryResponse$ |
+        | US,ASIA_EX_JAPAN,GLOBAL | empty       | empty               | empty                            | empty                            | sample1        |
+        | empty                   | USD,SGD,MYR | empty               | empty                            | empty                            | sample2        |
+        | empty                   | empty       | empty               | less_than_5K                     | empty                            | sample3        |
+        | empty                   | empty       | empty               | less_than_5K,between_5K_and_100K | empty                            | sample4        |
+        | empty                   | empty       | FIXED_INCOME        | empty                            | empty                            | sample5        |
+        | empty                   | empty       | FIXED_INCOME,EQUITY | empty                            | empty                            | sample6        |
+        | empty                   | empty       | empty               | empty                            | between_5_and_1                  | sample7        |
+        | empty                   | empty       | empty               | empty                            | between_1_and_5,between_5_and_10 | sample8        |
+        | US                      | USD         | FIXED_INCOME        | less_than_5K                     | between_5_and_1                  | sample9        |

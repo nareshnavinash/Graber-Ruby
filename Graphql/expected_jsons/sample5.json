@@ -32,7 +32,7 @@
           "topSellingPercentile": null,
           "topAumPercentile": null
         },
-        "wiCode": "Naresh",
+        "wiCode": "WI-CORE-22144",
         "instrumentName": "American Funds Growth Fund of Amer A",
         "standardDeviation": {
           "threeYear": 11.842
@@ -41,7 +41,7 @@
           "threeYear": 1.344
         },
         "strategicAssetAllocation": {
-          "cash": "50.92412",
+          "cash": "5.92412",
           "bond": "0.0",
           "stock": "94.01503",
           "alternatives": "0.06084"

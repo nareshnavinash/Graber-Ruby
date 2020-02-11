@@ -39,7 +39,7 @@ end
 
 Then("I ignore the few keys from comparison") do |table|
     table.rows.each do |data|
-        @@exclude_keys << data
+        @@exclude_keys << data[0]
     end
 end
 
@@ -51,7 +51,6 @@ Then("I validated the response as against stored validated JSON data") do |table
         end
         expected_json = FileHelper.read_expected_json_file("#{data[0]}.json")
         (JsonHelper.bool_data_compare).should eql(true), "#{JsonHelper.string_data_compare}"
-        binding.pry
     end
     @@exclude_keys = []
 end

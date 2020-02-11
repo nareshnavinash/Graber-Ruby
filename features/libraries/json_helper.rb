@@ -7,28 +7,28 @@ module Graber
     class JsonHelper
         
         def self.bool_data_compare
-            return JsonCompare.get_diff(@@response_json.data.to_h, @@expected_json.to_h, @@exclude_keys).empty?
+            return JsonCompare.get_diff(@@response_json['data'].to_h, @@expected_json.to_h, @@exclude_keys).empty?
         end
 
         def self.bool_error_compare
-            return JsonCompare.get_diff(@@response_json.error.to_h, @@expected_json.to_h, @@exclude_keys).empty?
+            return JsonCompare.get_diff(@@response_json['error'].to_h, @@expected_json.to_h, @@exclude_keys).empty?
         end
 
         def self.string_data_compare
-            diff = JsonDiff.diff(@@expected_json,JSON.parse(@@response_json.data.to_h.to_json),{:include_was => true,:moves => false })
+            diff = JsonDiff.diff(@@expected_json,JSON.parse(@@response_json['data'].to_h.to_json),{:include_was => true,:moves => false })
             pretty_json = JSON.pretty_generate(diff)
             return pretty_json.gsub("\"was\"","\"actual\"").gsub("\"value\"","\"expected\"",).gsub("/",".")
         end
 
         def self.string_error_compare
-            diff = JsonDiff.diff(@@expected_json,JSON.parse(@@response_json.error.to_h.to_json),{:include_was => true,:moves => false })
+            diff = JsonDiff.diff(@@expected_json,JSON.parse(@@response_json['error'].to_h.to_json),{:include_was => true,:moves => false })
             pretty_json = JSON.pretty_generate(diff)
             return pretty_json.gsub("\"was\"","\"actual\"").gsub("\"value\"","\"expected\"",).gsub("/",".")
         end
 
         def self.compare_keys
             expected_json_keys = self.get_keys(@@expected_json.to_h).map(&:to_s)
-            response_json_keys = self.get_keys(@@response_json.data.to_h).map(&:to_s)
+            response_json_keys = self.get_keys(@@response_json['data'].to_h).map(&:to_s)
             if(expected_json_keys.count > response_json_keys.count)
                 return expected_json_keys - response_json_keys
             else
