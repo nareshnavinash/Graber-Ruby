@@ -2,13 +2,12 @@ require 'parseconfig'
 require 'pathname'
 
 module Graber
-    @@conf_values = {}
     @@support_file_path = File.join("#{Pathname.pwd}","graphql")
     @@gql_filepath = ""
     @@graphql_query = ""
     @@query_variable_filepath = ""
     @@expected_json_filepath = ""
-    @@expected_json = ""
+    @@expected_json = {}
     @@exclude_keys = []
 
     class FileHelper
@@ -38,7 +37,7 @@ module Graber
                 end
                 json_content = File.read(@@query_variable_filepath)
                 result = update_json_values_from_config(json_content)
-                return result.to_h
+                return result
             rescue Exception => e
                 puts "Json file read is failed \n filename: #{json_file_name} \n #{e.message}"
             end
@@ -47,28 +46,34 @@ module Graber
         def self.update_json_values_from_config(json_content)
             begin
                 result = json_content
-                value_as_array =  json_content.scan(/_\$(\w+)\$_/)
-                value_as_array.each do |value|
-                    value.each do |child|
-                        conf_values_length = @@conf_values[child].split(",").length
-                        if child.include? ("_int")
-                            if conf_values_length == 1
-                                result = result.gsub("$"+child, @@conf_values[child].chomp('"').delete_prefix('"'))
+                value_as_array =  JSON.parse(json_content).to_h
+                value_as_array.map do |key, value|
+                    if value.to_s.include? "$"
+                        trimed_value = value.to_s.gsub("$", "")
+                        @@runtime_variables.map{ |k,v| val = trimed_value.to_s.include? k; @runtime_key = k if val == true }
+                        if @@runtime_variables[@runtime_key] != nil
+                            conf_values_length = @@runtime_variables[@runtime_key].split(",").length
+                            if @runtime_key.include? ("_int")
+                                if conf_values_length == 1
+                                    result = result.gsub("$"+@runtime_key, @@runtime_variables[@runtime_key].chomp('"').delete_prefix('"'))
+                                else
+                                    result = result.gsub("$"+@runtime_key, @@runtime_variables[@runtime_key].split(",").map { |i|  i.to_s  }.join(",").chomp('"').delete_prefix('"'))
+                                end
                             else
-                                result = result.gsub("$"+child, @@conf_values[child].split(",").map { |i|  i.to_s  }.join(",").chomp('"').delete_prefix('"'))
-                            end
-                        elsif child.include? ("empty")
-                            result = result.gsub("$"+child, "".chomp('"').delete_prefix('"'))
-                        else
-                            if conf_values_length == 1
-                                result = result.gsub("$"+child, @@conf_values[child])
-                            else
-                                result = result.gsub("$"+child, @@conf_values[child].split(",").map { |i|  i.to_s  }.join(","))
+                                if conf_values_length == 1
+                                    if @@runtime_variables[@runtime_key] == "empty"
+                                        result = result.gsub("\"$"+@runtime_key+"\"", "".chomp('"').delete_prefix('"'))
+                                    else
+                                        result = result.gsub("$"+@runtime_key, @@runtime_variables[@runtime_key])
+                                    end
+                                else
+                                    result = result.gsub("$"+@runtime_key, @@runtime_variables[@runtime_key].split(",").map { |i|  i.to_s  }.join(","))
+                                end
                             end
                         end
                     end
                 end
-                return result.gsub("nil","null")
+                return JSON.parse(result.gsub("nil","null"))
             rescue Exception => e
                 puts "Exception occured while saving user input values to the json \n #{e.message}"
             end
@@ -82,8 +87,8 @@ module Graber
                         break
                     end
                 end
-                @@expected_json = File.read(@@expected_json_filepath)
-                return @@expected_json.to_h
+                @@expected_json = JSON.parse(File.read(@@expected_json_filepath))
+                return @@expected_json
             rescue Exception => e
                 puts "Json file read is failed \n filename: #{json_file_name} \n #{e.message}"
             end

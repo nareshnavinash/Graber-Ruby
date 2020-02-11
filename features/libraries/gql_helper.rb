@@ -42,13 +42,7 @@ module Graber
                     if @@access_token == nil
                         def headers(context)
                             {"Content-Type": "application/json",
-                            "Accept": "*/*",
-                            "Cache-Control": "no-cache",
-                            "Host": "www.graphqlhub.com",
-                            "Accept-Encoding": "gzip, deflate",
-                            "Connection": "keep-alive",
-                            "User-Agent": "PostmanRuntime/7.21.0",
-                            "Postman-Token": "546e02e7-c331-4cd7-be93-04c9c9060d83"
+                            "Accept": "*/*"
                             }
                         end
                     else
@@ -81,13 +75,13 @@ module Graber
             end
         end
 
-        def self.execute(variables = nil)
+        def self.execute(query, variables = nil)
             begin
                 @@variables = variables
-                if variable == nil
+                if variables == nil
                     @@response_json = @@http_client.query(query)
                 else
-                    @@response_json = @@http_client.query(query, variables: variables)
+                    @@response_json = @@http_client.query(query, variables: @@variables)
                 end
                 @@response_errors = @@response_json.to_h["errors"]
                 return @@response_json

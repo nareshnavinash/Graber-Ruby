@@ -1,38 +1,47 @@
-query ($useridentity: UserIdentity!, $identifier: UserIdentifier!, $tweetId: String!, $searchq: String!, $searchcount: Int, $searchresulttype: SearchReponse){
-  graphQLHub
-  twitter {
-    user (identifier: $identifier, identity: $useridentity) {
-      created_at
-      description
-      id
-      screen_name
-      name
-      profile_image_url
-      url
-      tweets_count
-      followers_count
-      tweets(limit: 1) {
-        text
+query ($after: String, $first: Int, $investmentBudget: [AumFilter!], $currencies: [CurrencyFilter!], $geographies: [GeographyFilter!], $assetclasses: [AssetClassFilter!], $annualizedReturns: [ReturnsFilter!]) {
+  instruments(productType: "Funds", first: $first, after: $after, filter: {investmentBudget: $investmentBudget, currencies: $currencies, geographies: $geographies, assetclasses: $assetclasses, returns: $annualizedReturns}, sort: {topSelling: {percentile: 75, ordering: 2}, topAum: {percentile: 75, ordering: 1}}) {
+    pageCursors {
+      all {
+        cursor
       }
     }
-    tweet(id: $tweetId) {
-      text,
-      retweets(limit: 2) {
-        id,
-        retweeted_status {
-          id
-        }
-        user {
-          screen_name
-        }
-      }
+    totalPages
+    totalCount
+    pageInfo {
+      hasNextPage
     }
-    search(q: $searchq, count: $searchcount, result_type: $searchresulttype) {
-      user {
-        screen_name
+    nodes {
+      currency {
+        id
+        isoCode
       }
-      id
-      text
+      ... on Fund {
+        instrumentLabel {
+          topSellingPercentile
+          topAumPercentile
+        }
+        wiCode
+        instrumentName
+        standardDeviation {
+          threeYear
+        }
+        returns {
+          threeYear
+        }
+        strategicAssetAllocation {
+          cash
+          bond
+          stock
+          alternatives
+        }
+        expenseRatio
+        sharpeRatio {
+          threeYear
+        }
+        incomeGrowthFocus
+        minimumInitialInvestment
+        previousClosePrice
+      }
     }
   }
 }
