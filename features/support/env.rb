@@ -45,18 +45,7 @@ end
 Before('@TC_SA_Features') do
     $before_TC_SA_Features ||= false # have to define a variable before we can reference its value
     if !$before_TC_SA_Features
-        # graphql_initialize = GqlHelper.new(ENV["URL"])
-        @http_adaptor = GraphQL::Client::HTTP.new("https://corev2-dev-rs.weinvest-stage.net/graphql") do
-            def headers(context)
-                {
-                    "WEINVEST_SERVICE_TOKEN": "e9695057ea59c7173704ff1ec4f2a08e5e10f20db2246bbf62f48990f6570865"
-                }
-            end
-        end
-        @http_schema = GraphQL::Client.load_schema(@http_adaptor)
-        @@http_client = GraphQL::Client.new(schema: @http_schema, execute: @http_adaptor)
-        @@http_client.allow_dynamic_queries = true
-        $client = @@http_client
+        graphql_initialize = GqlHelper.new(ENV["URL"])
     end
     $before_TC_SA_Features = true
 end
