@@ -310,6 +310,7 @@ Scenario Outline: Sample graphql query with query variable in scenario outline d
 
 While creating the test cases for the first time, we no need to create the expected json file for all the cases. Just create Query file, Query Variable file and then draft the Scenario Outline and then run the test with `snap=1`, this will automatically create the expected JSON files in the `graphql/expected_jsons` folder. Review the changes and then commit.
 
+Note: Query added in this project structure is dummy query and the endpoint is also a mock one. Kindly try with your own query and endpoint.
 
 ## Built With
 

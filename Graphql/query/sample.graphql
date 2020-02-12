@@ -1,47 +1,38 @@
 query ($after: String, $first: Int, $investmentBudget: [AumFilter!], $currencies: [CurrencyFilter!], $geographies: [GeographyFilter!], $assetclasses: [AssetClassFilter!], $annualizedReturns: [ReturnsFilter!]) {
-  instruments(productType: "Funds", first: $first, after: $after, filter: {investmentBudget: $investmentBudget, currencies: $currencies, geographies: $geographies, assetclasses: $assetclasses, returns: $annualizedReturns}, sort: {topSelling: {percentile: 75, ordering: 2}, topAum: {percentile: 75, ordering: 1}}) {
-    pageCursors {
-      all {
-        cursor
+  graphQLHub
+  twitter {
+    user (identifier: name, identity: "clayallsopp") {
+      created_at
+      description
+      id
+      screen_name
+      name
+      profile_image_url
+      url
+      tweets_count
+      followers_count
+      tweets(limit: 1) {
+        text
       }
     }
-    totalPages
-    totalCount
-    pageInfo {
-      hasNextPage
+    tweet(id: "687433440774459392") {
+      text,
+      retweets(limit: 2) {
+        id,
+        retweeted_status {
+          id
+        }
+        user {
+          screen_name
+        }
+      }
     }
-    nodes {
-      currency {
-        id
-        isoCode
+    search(q: "Javascript", count: 1, result_type: mixed) {
+      user {
+        screen_name
       }
-      ... on Fund {
-        instrumentLabel {
-          topSellingPercentile
-          topAumPercentile
-        }
-        wiCode
-        instrumentName
-        standardDeviation {
-          threeYear
-        }
-        returns {
-          threeYear
-        }
-        strategicAssetAllocation {
-          cash
-          bond
-          stock
-          alternatives
-        }
-        expenseRatio
-        sharpeRatio {
-          threeYear
-        }
-        incomeGrowthFocus
-        minimumInitialInvestment
-        previousClosePrice
-      }
+      id
+      text
     }
   }
 }
