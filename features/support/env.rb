@@ -29,10 +29,10 @@ Before do
     $init_setup_actions ||= false # have to define a variable before we can reference its value
     if !$init_setup_actions
         #clearing the junk files from results folder
-        Dir.glob("#{Dir.pwd}/reports/html/*").select{ |file| /html_result.html/.match file }.each { |file| File.delete(file)}
-        Dir.glob("#{Dir.pwd}/reports/pretty/*").select{ |file| /pretty.txt/.match file }.each { |file| File.delete(file)}
-        Dir.glob("#{Dir.pwd}/reports/progress/*").select{ |file| /progress.txt/.match file }.each { |file| File.delete(file)}
-        Dir.glob("#{Dir.pwd}/reports/cucumber_rerun/*").select{ |file| /rerun.txt/.match file }.each { |file| File.delete(file)}
+        # Dir.glob("#{Dir.pwd}/reports/html/*").select{ |file| /html_result.html/.match file }.each { |file| File.delete(file)}
+        # Dir.glob("#{Dir.pwd}/reports/pretty/*").select{ |file| /pretty.txt/.match file }.each { |file| File.delete(file)}
+        # Dir.glob("#{Dir.pwd}/reports/progress/*").select{ |file| /progress.txt/.match file }.each { |file| File.delete(file)}
+        # Dir.glob("#{Dir.pwd}/reports/cucumber_rerun/*").select{ |file| /rerun.txt/.match file }.each { |file| File.delete(file)}
         Dir.glob("#{Dir.pwd}/reports/runtime_files/*").select{ |file| /.json/.match file }.each { |file| File.delete(file)}
         Dir.glob("#{Dir.pwd}/reports/runtime_files/*").select{ |file| /.graphql/.match file }.each { |file| File.delete(file)}
         @@global_response_data = {}
