@@ -71,6 +71,14 @@ module Graber
                                 end
                             end
                         end
+                    elsif value.to_s.include? "_runtime"
+                        trimed_value = value.to_s
+                        @@runtime_variables.map{ |k,v| val = trimed_value.to_s.include? k; @runtime_key = k if val == true }
+                        if @@runtime_variables[@runtime_key] != nil
+                            result = result.gsub(@runtime_key, "")
+                        else
+                            result = result.gsub(@runtime_key, @@runtime_variables[@runtime_key])
+                        end
                     end
                 end
                 return JSON.parse(result.gsub("nil","null"))

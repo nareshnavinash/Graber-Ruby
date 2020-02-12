@@ -37,6 +37,7 @@ Before do
         Dir.glob("#{Dir.pwd}/reports/runtime_files/*").select{ |file| /.graphql/.match file }.each { |file| File.delete(file)}
         @@global_response_data = {}
         @@runtime_variables = {}
+        @@tentative_count = 0
     end
     $init_setup_actions = true
 end
@@ -76,6 +77,7 @@ After do |scenario|
         attach_file("#{scenario.feature.name.gsub(" ","_").gsub(",","_").gsub('"','')}_#{scenario.scenario_outline.name.gsub(" ","_").gsub(",","_").gsub('"','')}_query.graphql".to_s,ReportsHelper.save_query_file(scenario))
         attach_file("#{scenario.feature.name.gsub(" ","_").gsub(",","_").gsub('"','')}_#{scenario.scenario_outline.name.gsub(" ","_").gsub(",","_").gsub('"','')}_query_variable.json".to_s,ReportsHelper.save_variable_file(scenario))
         ReportsHelper.copy_response_to_expected_file(scenario) if ENV['snap'] == "1" && scenario.failed?
+        @@tentative_count = @@tentative_count + 1
     else
         attach_file("#{scenario.feature.name.gsub(" ","_").gsub(",","_")}_#{scenario.name.gsub(" ","_").gsub(",","_").gsub('"','')}_response.json".to_s,ReportsHelper.save_response_file(scenario))
         attach_file("#{scenario.feature.name.gsub(" ","_").gsub(",","_")}_#{scenario.name.gsub(" ","_").gsub(",","_").gsub('"','')}_expected.json".to_s,ReportsHelper.save_expected_json(scenario))
@@ -84,4 +86,5 @@ After do |scenario|
         attach_file("#{scenario.feature.name.gsub(" ","_").gsub(",","_")}_#{scenario.name.gsub(" ","_").gsub(",","_").gsub('"','')}_query_variable.json".to_s,ReportsHelper.save_variable_file(scenario))
         ReportsHelper.copy_response_to_expected_file(scenario) if ENV['snap'] == "1" && scenario.failed?
     end
+    @@runtime_variables = {} if @@tentative_count > 99
 end
