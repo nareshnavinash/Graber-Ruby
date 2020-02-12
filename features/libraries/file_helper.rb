@@ -67,7 +67,7 @@ module Graber
                                         result = result.gsub("$"+@runtime_key, @@runtime_variables[@runtime_key])
                                     end
                                 else
-                                    result = result.gsub("$"+@runtime_key, @@runtime_variables[@runtime_key].split(",").map { |i|  i.to_s  }.join(","))
+                                    result = result.gsub("$"+@runtime_key, @@runtime_variables[@runtime_key].split(",").map { |i|  i.to_s  }.join("\",\""))
                                 end
                             end
                         end
