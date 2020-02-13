@@ -312,6 +312,10 @@ While creating the test cases for the first time, we no need to create the expec
 
 Note: Query added in this project structure is dummy query and the endpoint is also a mock one. Kindly try with your own query and endpoint.
 
+## Rakefile
+
+Rakefile has been added to mail the report status once the run is completed. This will be useful once we integrate with CI and helpful in debugging which commit has caused the actual problem. For more details you could visit the [Rakefile](Rakefile). (Code refactoring is yet to be done in that file)
+
 ## Built With
 
 * [Cucumber](https://rubygems.org/gems/cucumber/versions/3.1.2) - Automation core framework
