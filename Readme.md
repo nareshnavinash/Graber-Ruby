@@ -314,7 +314,19 @@ Note: Query added in this project structure is dummy query and the endpoint is a
 
 ## Rakefile
 
-Rakefile has been added to mail the report status once the run is completed. This will be useful once we integrate with CI and helpful in debugging which commit has caused the actual problem. For more details you could visit the [Rakefile](Rakefile). (Code refactoring is yet to be done in that file)
+Rakefile has been added to mail the report status once the run is completed. This will be useful once we integrate with CI and helpful in debugging which commit has caused the actual problem. For more details you could visit the [Rakefile](Rakefile). (Code refactoring is yet to be done in that file). In Jenkins you could get the following values as environment variables.
+
+```
+$BUILD_URL #Directly fetched from ENV variable
+$GIT_URL #Directly fetched from ENV variable
+$GIT_BRANCH #Directly fetched from ENV variable
+$GIT_COMMIT #Directly fetched from ENV variable
+$GIT_COMMITER_EMAIL=$(git --no-pager show -s --format='%ae' $GIT_COMMIT)
+$REPORTS_EMAIL_RECEIVERS="nareshnavinash@gmail.com;nareshsekar@zoho.com" #Or can be taken from parameterized build
+
+#Run the rake task by,
+rake email[$BUILD_URL,$GIT_URL,$GIT_BRANCH,$GIT_COMMIT,$GIT_COMMITER_EMAIL,$REPORTS_EMAIL_RECEIVERS]
+```
 
 ## Built With
 
